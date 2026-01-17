@@ -1,3 +1,4 @@
+package operations;
 // java의 표준 입력 스트림
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
