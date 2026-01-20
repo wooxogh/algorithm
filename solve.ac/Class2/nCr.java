@@ -1,18 +1,24 @@
-//Quiz 2420
-package conditions;
+//Quiz 11050
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class SafariWorld {
+public class nCr {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        long a = Long.parseLong(st.nextToken());
-        long b = Long.parseLong(st.nextToken());
+        int n = Integer.parseInt(st.nextToken());
+        int r = Integer.parseInt(st.nextToken());
+        int a = 1;
+        int b = 1;
 
-        System.out.println(Math.abs(a - b));
+        for (int i = 0; i < r; i++) {
+            a *= (n - i);
+            b *= (i + 1);
+        }
+
+        System.out.println(a / b);
     }
 }

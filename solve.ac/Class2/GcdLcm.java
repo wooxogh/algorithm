@@ -11,12 +11,21 @@ public class GcdLcm {
         StringTokenizer st = new StringTokenizer(br.readLine());
         int a = Integer.parseInt(st.nextToken());
         int b = Integer.parseInt(st.nextToken());
-        int share = 0;
-        int remainder = 0;
 
-        if (a > b) {
-            share = a / b;
-            remainder = a % b;
+        int x = a;
+        int y = b;
+
+        while (y != 0) {
+            int z = x % y;
+            x = y;
+            y = z;
         }
+
+        int gcd = x;
+        int lcm = a * b / gcd;
+
+        System.out.println(gcd);
+        System.out.println(lcm);
     }
 }
+
