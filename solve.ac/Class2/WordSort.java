@@ -33,6 +33,5 @@ public class WordSort {
         }
 
         System.out.print(sb);
-
     }
 }
