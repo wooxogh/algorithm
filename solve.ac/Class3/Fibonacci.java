@@ -6,30 +6,24 @@ import java.io.InputStreamReader;
 public class Fibonacci {
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int n = Integer.parseInt(br.readLine());
-        StringBuilder sb = new StringBuilder();
-
-        for (int i = 0; i < n; i++) {
-            int num = Integer.parseInt(br.readLine());
-            int zero = 0;
-            int one = 0;
-            
-            if (fibonacci(num) == 0) zero += 1;
-            else if (fibonacci(num) == 1) one += 1;
-
-            sb.append(zero + ' ' + one).append('\n');
-        }
+        int t = Integer.parseInt(br.readLine());
         
-        System.out.println(sb);
-    }
+        int[][] dp = new int[41][2];
 
-    public static Integer fibonacci(Integer i) {
-        if (i == 0) {
-            return 0;
-        } else if (i == 1) {
-            return 1;
-        } else {
-            return fibonacci(i - 1) + fibonacci(i - 2);
+        dp[0][0] = 1; dp[0][1] = 0;
+        dp[1][0] = 0; dp[1][1] = 1;
+
+        for (int i = 2; i <= 40; i++) {
+            dp[i][0] = dp[i - 1][0] + dp[i - 2][0];
+            dp[i][1] = dp[i - 1][1] + dp[i - 2][1];
         }
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < t; i++) {
+            int n = Integer.parseInt(br.readLine());
+            sb.append(dp[n][0]).append(" ").append(dp[n][1]).append('\n');
+        }
+
+        System.out.print(sb);
     }
 }
