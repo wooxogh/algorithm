@@ -8,19 +8,31 @@ import java.util.StringTokenizer;
 public class NandM9 {
     static int N, M;
     static int[] arr, result;
+    static boolean[] visited;
     static StringBuilder sb = new StringBuilder();
 
-    static void dfs(int depth, int start) {
-        if (depth == M) {
-            for (int i = 0; i < M; i++) {
+    static void dfs(int depth){
+        if(depth == M){
+            for(int i=0;i<M;i++){
                 sb.append(result[i]).append(" ");
             }
+            sb.append("\n");
             return;
         }
-
-        for (int i = start; i < N; i++) {
-            result[depth] = i;
-            dfs(depth + 1, i);
+    
+        int prev = -1;
+    
+        for(int i=0;i<N;i++){
+            if(visited[i]) continue;
+            if(prev == arr[i]) continue;
+    
+            visited[i] = true;
+            result[depth] = arr[i];
+            prev = arr[i];
+    
+            dfs(depth+1);
+    
+            visited[i] = false;
         }
     }
 
@@ -33,6 +45,7 @@ public class NandM9 {
 
         arr = new int[N];
         result = new int[N];
+        visited = new boolean[N];
         st = new StringTokenizer(br.readLine());
         for (int i = 0; i < N; i++) {
             arr[i] = Integer.parseInt(st.nextToken());
@@ -40,6 +53,8 @@ public class NandM9 {
 
         Arrays.sort(arr);
 
-        dfs(0, 1);
+        dfs(0);
+
+        System.out.print(sb);
     }
 }
